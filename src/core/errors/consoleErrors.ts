@@ -1,9 +1,8 @@
 class PluginError extends Error {
-  constructor(message: string, cause?: string) {
+  constructor(message: string) {
     super(message)
     this.name = "PAYLOAD_AUTH_PLUGIN_ERROR"
     this.message = message
-    this.cause = cause
     this.stack = ""
   }
 }
