@@ -2,6 +2,7 @@ import { AuthPluginOutput, ErrorKind } from "../types.js"
 
 type BaseOptions = {
   name: string
+  flow?: 'popup' | 'redirect'
 }
 
 export type OauthProvider =
@@ -19,7 +20,36 @@ export type OauthProvider =
   | "jumpcloud"
   | "twitch"
 
+
 export const oauth = (
+  options: BaseOptions,
+  provider: OauthProvider,
+): Promise<AuthPluginOutput> | void => {
+  const flow = options.flow || 'redirect'
+  console.log('flow', flow)
+
+  if (flow === 'popup') {
+    return oauthPopup(options, provider)
+  } else if (flow === 'redirect') {
+    return oauthRedirect(options, provider)
+  } else {
+    throw new Error('Invalid flow')
+  }
+}
+
+
+const oauthRedirect = (
+  options: BaseOptions,
+  provider: OauthProvider,
+): void => {
+  const base = process.env.NEXT_PUBLIC_SERVER_URL
+  const authUrl = `${base}/api/${options.name}/oauth/authorization/${provider}?redirect=true&redirectUri=${encodeURIComponent(window.location.href)}&clientOrigin=${encodeURIComponent(window.location.origin)}`
+
+  // Redirect to the OAuth provider
+  window.location.href = authUrl
+}
+
+const oauthPopup = (
   options: BaseOptions,
   provider: OauthProvider,
 ): Promise<AuthPluginOutput> => {

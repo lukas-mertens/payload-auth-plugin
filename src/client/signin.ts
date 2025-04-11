@@ -3,6 +3,7 @@ import { oauth, OauthProvider } from "./oauth.js"
 import { init as passkeyInit } from "./passkey/index.js"
 interface BaseOptions {
   name: string
+  flow?: 'popup' | 'redirect'
 }
 
 export const appSignin = (options: BaseOptions) => {

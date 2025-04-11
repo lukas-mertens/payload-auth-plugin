@@ -19,8 +19,20 @@ export function sessionResponse(
   )
 
   if (returnURL) {
-    let channelID = new URL(returnURL).hash
-    if (channelID) {
+    const url = new URL(returnURL)
+    const channelID = url.hash
+    const isRedirectFlow = true // TODO : Implement if redirect flow
+
+    if (isRedirectFlow) {
+      // For redirect flow, redirect back to the main application
+      res = new Response(null, {
+        status: 302,
+        headers: {
+          'Location': returnURL.split('?')[0], // Remove query parameters
+        },
+      })
+    } else if (channelID) {
+    // For popup flow, use BroadcastChannel
       res = new Response(
         `
         <!DOCTYPE html>

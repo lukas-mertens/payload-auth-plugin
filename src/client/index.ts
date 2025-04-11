@@ -13,6 +13,7 @@ import { appSignup } from "./signup.js"
 
 interface AppClientOptions {
   name: string
+  flow?: 'popup' | 'redirect'
 }
 
 export const appClient = (options: AppClientOptions) => {
