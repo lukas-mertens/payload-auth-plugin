@@ -2,7 +2,6 @@ import { parseCookies, type PayloadRequest } from "payload"
 import * as oauth from "oauth4webapi"
 import type { OAuth2ProviderConfig, AccountInfo } from "../../../types.js"
 import { getCallbackURL } from "../../utils/cb.js"
-import { MissingOrInvalidSession } from "../../errors/consoleErrors.js"
 
 export async function OAuth2Callback(
   pluginType: string,
@@ -20,7 +19,7 @@ export async function OAuth2Callback(
   const clientOrigin = parsedCookies.get("__client-origin")
 
   if (!code_verifier || !clientOrigin) {
-    throw new MissingOrInvalidSession()
+    return Response.redirect(request.payload.config.serverURL)
   }
 
   const {
