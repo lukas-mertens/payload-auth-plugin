@@ -38,7 +38,17 @@ export function OAuthHandlers(
     case "callback":
       switch (provider.algorithm) {
         case "oidc":
-          return OIDCCallback(pluginType, request, provider, sessionCallBack)
+          return OIDCCallback(
+            pluginType,
+            request,
+            provider,
+            sessionCallBack,
+          ).catch((error) => {
+            console.error("OIDCCallback error", error)
+            return Promise.resolve(
+              Response.redirect(request.payload.config.serverURL),
+            )
+          })
         case "oauth2":
           return OAuth2Callback(pluginType, request, provider, sessionCallBack)
         default:

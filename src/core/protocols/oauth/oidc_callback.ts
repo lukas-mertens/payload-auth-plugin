@@ -2,7 +2,6 @@ import { parseCookies, type PayloadRequest } from "payload"
 import * as oauth from "oauth4webapi"
 import type { AccountInfo, OIDCProviderConfig } from "../../../types.js"
 import { getCallbackURL } from "../../utils/cb.js"
-import { MissingOrInvalidSession } from "../../errors/consoleErrors.js"
 
 export async function OIDCCallback(
   pluginType: string,
@@ -20,7 +19,7 @@ export async function OIDCCallback(
   const clientOrigin = parsedCookies.get("__session-client-origin")
 
   if (!code_verifier || !clientOrigin) {
-    throw new MissingOrInvalidSession()
+    return Response.redirect(request.payload.config.serverURL)
   }
 
   const { client_id, client_secret, issuer, algorithm, profile } =
