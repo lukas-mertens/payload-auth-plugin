@@ -18,8 +18,8 @@ importers:
         specifier: 6.0.8
         version: 6.0.8
       oauth4webapi:
-        specifier: ^3.1.4
-        version: 3.3.2
+        specifier: 3.5.0
+        version: 3.5.0
       payload:
         specifier: ^3
         version: 3.31.0(graphql@16.10.0)(typescript@5.8.2)
@@ -720,8 +720,8 @@ packages:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  oauth4webapi@3.3.2:
-    resolution: {integrity: sha512-hCJgDQayOLpBxdDpzShK/SI3C1PVnkj4CcKLOGyQm23Lk5V+qYPH+LtQlu8YO29MswBry/FBVlwWBnWgQvaFdA==}
+  oauth4webapi@3.5.0:
+    resolution: {integrity: sha512-DF3mLWNuxPkxJkHmWxbSFz4aE5CjWOsm465VBfBdWzmzX4Mg3vF8icxK+iKqfdWrIumBJ2TaoNQWx+SQc2bsPQ==}
 
   on-exit-leak-free@2.1.2:
     resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
@@ -1753,7 +1753,7 @@ snapshots:
     dependencies:
       path-key: 4.0.0
 
-  oauth4webapi@3.3.2: {}
+  oauth4webapi@3.5.0: {}
 
   on-exit-leak-free@2.1.2: {}
 
